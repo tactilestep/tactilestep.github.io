@@ -1,0 +1,63 @@
+---
+import results from '../data/results.json';
+import Figure from './Figure.astro';
+import ResultText from './ResultText.astro';
+const impactFigure = {
+  src: 'images/results/tactilestep-landing-impact-force.png',
+  alt: 'Radar chart of simulated landing impact force in newtons across flat ground, slopes, upstairs, downstairs, and platform ascent and descent. TactileStep has lower impact force than both the variant without soft-landing rewards and the Hiking baseline on all six terrains.',
+  caption: '',
+  width: 1440,
+  height: 1320,
+};
+---
+<p class="results-intro">Softer landings, steadier support, and reliable traversal.<br />Evaluated in simulation and on the Real Unitree G1.</p>
+<article class="result-study" id="landing-impact" aria-labelledby="landing-impact-heading">
+  <header class="result-heading">
+    <p class="result-source">In simulation</p>
+    <h3 id="landing-impact-heading">Lower landing impact across terrains</h3>
+  </header>
+  <div class="result-layout">
+    <div class="result-data impact-figure">
+      <Figure media={impactFigure} label="Landing impact force figure" />
+    </div>
+    <aside class="result-summary" aria-label="Landing impact force: summary">
+      <h4>What the results show</h4>
+      <ResultText text="TactileStep achieves the **lowest landing impact** across **all six terrains**, outperforming both the Hiking baseline and the variant without soft-landing rewards." />
+      <ResultText text="Impact rises whenever **soft-landing rewards** are removed, highlighting their role in smoothing touchdown." />
+    </aside>
+  </div>
+</article>
+{results.map(result => (
+  <article class="result-study" aria-labelledby={`${result.id}-heading`}>
+    <header class="result-heading">
+      <p class="result-source">{result.id === 'hardware' ? 'On the real robot' : 'In simulation'}</p>
+      <h3 id={`${result.id}-heading`}>{result.title}</h3>
+    </header>
+    <div class="result-layout">
+      <div class="result-data">
+        <p class="table-scroll-hint">Swipe to explore →</p>
+        <div class="table-scroll" role="region" tabindex="0" aria-label={`${result.caption} Scrollable table.`}>
+          <table class="results-table">
+            <caption class="visually-hidden">{result.caption}</caption>
+            <thead><tr>
+              <th scope="col">Terrain</th>
+              <th scope="col">Method</th>
+              {result.columns.map(column => <th scope="col">{column}</th>)}
+            </tr></thead>
+            {result.groups.map(group => <tbody>
+              {group.rows.map((row, index) => <tr class:list={{ 'our-method': row.method === 'TactileStep' }}>
+                {index === 0 && <th scope="rowgroup" rowspan={group.rows.length}>{group.terrain}</th>}
+                <th scope="row">{row.method}</th>
+                {row.values.map(value => <td>{value}</td>)}
+              </tr>)}
+            </tbody>)}
+          </table>
+        </div>
+      </div>
+      <aside class="result-summary" aria-label={`${result.title}: summary`}>
+        <h4>What the results show</h4>
+        {result.summary.map(paragraph => <ResultText text={paragraph} />)}
+      </aside>
+    </div>
+  </article>
+))}

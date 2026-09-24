@@ -1,0 +1,17 @@
+---
+interface Props {
+  name: 'paper' | 'arxiv' | 'code' | 'video' | 'image' | 'copy';
+}
+const { name } = Astro.props;
+const paths = {
+  paper: 'M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z M14 3v5h5 M9 12h6 M9 16h6',
+  arxiv: 'M6 4l12 16 M18 4L6 20',
+  code: 'M8 7l-5 5 5 5 M16 7l5 5-5 5 M14 4l-4 16',
+  video: 'M9 6l10 6-10 6z',
+  image: 'M3 4h18v16H3z M3 16l6-6 5 5 3-3 4 4 M16 8h.01',
+  copy: 'M9 9h11v12H9z M15 9V3H3v12h6',
+};
+---
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d={paths[name]} />
+</svg>

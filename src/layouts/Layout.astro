@@ -1,0 +1,22 @@
+---
+import '../styles/global.css';
+import { assetUrl } from '../utils/asset';
+interface Props { title: string; }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="TactileStep — a robotics research project accepted at CoRL 2026. Paper, videos, method, and experimental results." />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/svg+xml" href={assetUrl('favicon.svg')} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#paper">Skip to paper information</a>
+    <slot />
+    <script src="../scripts/media.ts"></script>
+  </body>
+</html>

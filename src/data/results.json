@@ -1,0 +1,472 @@
+[
+  {
+    "id": "support",
+    "title": "Broader, more centered support",
+    "source": "Table 1 · Simulation",
+    "caption": "Simulation evaluation of support quality on terrains.",
+    "columns": [
+      "Contact area ratio ↑",
+      "CoP margin [mm] ↑"
+    ],
+    "groups": [
+      {
+        "terrain": "Flat",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "0.929 ± 0.054",
+              "35.79 ± 0.54"
+            ]
+          },
+          {
+            "method": "w/o stable",
+            "values": [
+              "0.750 ± 0.068",
+              "29.90 ± 2.34"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "0.912 ± 0.020",
+              "35.21 ± 0.14"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Slope",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "0.805 ± 0.044",
+              "34.24 ± 0.37"
+            ]
+          },
+          {
+            "method": "w/o stable",
+            "values": [
+              "0.624 ± 0.051",
+              "27.55 ± 1.72"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "0.804 ± 0.023",
+              "34.20 ± 0.11"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Upstairs",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "0.536 ± 0.042",
+              "29.05 ± 1.16"
+            ]
+          },
+          {
+            "method": "w/o stable",
+            "values": [
+              "0.462 ± 0.040",
+              "25.56 ± 1.35"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "0.480 ± 0.012",
+              "26.03 ± 0.40"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Downstairs",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "0.545 ± 0.051",
+              "29.43 ± 1.02"
+            ]
+          },
+          {
+            "method": "w/o stable",
+            "values": [
+              "0.455 ± 0.048",
+              "25.91 ± 1.20"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "0.487 ± 0.017",
+              "27.07 ± 0.36"
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": [
+      "TactileStep forms **broader, more centered contacts** than the variant without stable-support rewards on **all four terrains**.",
+      "Improvements over Baseline are clearest on **stairs**, where restricted footholds make stable support harder. Gains on flat ground and slopes are modest."
+    ],
+    "note": "4,096 trials per policy and terrain. ↑ Higher is better. “w/o stable” removes stable-support rewards."
+  },
+  {
+    "id": "locomotion",
+    "title": "Traversal performance and trade-offs",
+    "source": "Table 2 · Simulation",
+    "caption": "Standard locomotion metrics in simulation.",
+    "columns": [
+      "Success rate",
+      "Velocity RMSE [m/s]",
+      "Traversal time [s]",
+      "Energy [J]"
+    ],
+    "groups": [
+      {
+        "terrain": "Stair up",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "100%",
+              "0.24 ± 0.02",
+              "5.7 ± 0.4",
+              "1126.3 ± 66.6"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "99.98%",
+              "0.21 ± 0.02",
+              "5.6 ± 0.3",
+              "802.2 ± 97.0"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Stair down",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "100%",
+              "0.20 ± 0.02",
+              "6.1 ± 0.6",
+              "1232.9 ± 91.0"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "99.98%",
+              "0.19 ± 0.03",
+              "6.0 ± 0.5",
+              "887.4 ± 110.4"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Platform up",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "100%",
+              "0.24 ± 0.02",
+              "4.9 ± 0.5",
+              "939.8 ± 50.5"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "99.93%",
+              "0.23 ± 0.03",
+              "4.9 ± 0.6",
+              "867.1 ± 72.8"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Platform down",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "100%",
+              "0.22 ± 0.02",
+              "4.9 ± 0.6",
+              "1033.0 ± 73.6"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "92.26%",
+              "0.21 ± 0.15",
+              "4.9 ± 0.8",
+              "1005.3 ± 119.7"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Flat",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "99.98%",
+              "0.20 ± 0.08",
+              "6.5 ± 3.3",
+              "834.4 ± 165.4"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "99.19%",
+              "0.17 ± 0.03",
+              "5.6 ± 2.2",
+              "644.5 ± 76.1"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Slope",
+        "rows": [
+          {
+            "method": "TactileStep",
+            "values": [
+              "99.63%",
+              "0.21 ± 0.17",
+              "6.0 ± 2.8",
+              "995.7 ± 126.1"
+            ]
+          },
+          {
+            "method": "Baseline",
+            "values": [
+              "99.63%",
+              "0.19 ± 0.05",
+              "5.2 ± 2.1",
+              "786.3 ± 47.9"
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": [
+      "**Success rates match or exceed Baseline** across all six terrains. Platform descent reaches **100%**, compared with **92.26%** for Baseline.",
+      "This comes with **higher energy use** and generally slightly higher tracking error and traversal time. Longer traversal and more active joint regulation may contribute to the energy increase."
+    ],
+    "note": "4,096 trials per policy and terrain. RMSE: root-mean-square velocity-tracking error. Success rate is reported as a percentage."
+  },
+  {
+    "id": "hardware",
+    "title": "Softer, quieter contact on hardware",
+    "source": "Table 3 · Real world",
+    "caption": "Real-world results across diverse terrains.",
+    "columns": [
+      "Impact force [N] ↓",
+      "Peak A-weighted noise [dB] ↓",
+      "Contact area ratio ↑"
+    ],
+    "groups": [
+      {
+        "terrain": "Stair up",
+        "rows": [
+          {
+            "method": "Baseline",
+            "values": [
+              "499.9 ± 40.7",
+              "101.2 ± 3.7",
+              "0.470 ± 0.013"
+            ]
+          },
+          {
+            "method": "w/o tac. obs.",
+            "values": [
+              "375.2 ± 47.3",
+              "85.1 ± 3.4",
+              "0.421 ± 0.028"
+            ]
+          },
+          {
+            "method": "TactileStep",
+            "values": [
+              "349.8 ± 32.5",
+              "72.2 ± 2.8",
+              "0.482 ± 0.016"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Stair down",
+        "rows": [
+          {
+            "method": "Baseline",
+            "values": [
+              "359.3 ± 23.2",
+              "97.2 ± 1.2",
+              "0.483 ± 0.020"
+            ]
+          },
+          {
+            "method": "w/o tac. obs.",
+            "values": [
+              "353.3 ± 38.6",
+              "84.9 ± 3.9",
+              "0.417 ± 0.044"
+            ]
+          },
+          {
+            "method": "TactileStep",
+            "values": [
+              "344.1 ± 20.1",
+              "67.1 ± 1.4",
+              "0.598 ± 0.027"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Platform up",
+        "rows": [
+          {
+            "method": "Baseline",
+            "values": [
+              "695.0 ± 49.4",
+              "110.1 ± 6.0",
+              "–"
+            ]
+          },
+          {
+            "method": "w/o tac. obs.",
+            "values": [
+              "371.5 ± 50.5",
+              "98.2 ± 5.3",
+              "–"
+            ]
+          },
+          {
+            "method": "TactileStep",
+            "values": [
+              "355.7 ± 39.8",
+              "83.0 ± 4.1",
+              "–"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Platform down",
+        "rows": [
+          {
+            "method": "Baseline",
+            "values": [
+              "608.9 ± 38.6",
+              "90.8 ± 5.2",
+              "–"
+            ]
+          },
+          {
+            "method": "w/o tac. obs.",
+            "values": [
+              "445.7 ± 54.1",
+              "87.5 ± 4.4",
+              "–"
+            ]
+          },
+          {
+            "method": "TactileStep",
+            "values": [
+              "404.6 ± 43.2",
+              "75.9 ± 3.6",
+              "–"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Flat",
+        "rows": [
+          {
+            "method": "Baseline",
+            "values": [
+              "201.3 ± 23.3",
+              "90.6 ± 2.5",
+              "0.453 ± 0.011"
+            ]
+          },
+          {
+            "method": "w/o tac. obs.",
+            "values": [
+              "202.1 ± 32.4",
+              "85.9 ± 2.9",
+              "0.362 ± 0.035"
+            ]
+          },
+          {
+            "method": "TactileStep",
+            "values": [
+              "191.3 ± 17.7",
+              "66.5 ± 1.6",
+              "0.510 ± 0.014"
+            ]
+          }
+        ]
+      },
+      {
+        "terrain": "Slope",
+        "rows": [
+          {
+            "method": "Baseline",
+            "values": [
+              "255.0 ± 34.9",
+              "83.4 ± 1.0",
+              "0.486 ± 0.026"
+            ]
+          },
+          {
+            "method": "w/o tac. obs.",
+            "values": [
+              "204.7 ± 42.1",
+              "77.1 ± 2.0",
+              "0.490 ± 0.033"
+            ]
+          },
+          {
+            "method": "TactileStep",
+            "values": [
+              "202.0 ± 31.0",
+              "69.9 ± 1.1",
+              "0.499 ± 0.030"
+            ]
+          }
+        ]
+      }
+    ],
+    "summary": [
+      "Against Baseline on the same terrain, impact falls by **48.8% on platform ascent** and peak noise drops by **30.1 dB on stair descent**.",
+      "**Stance contact area** improves wherever reported, with a **23.8% relative gain on stair descent**. Removing **tactile observations** weakens noise reduction and contact area, underscoring the value of online feedback."
+    ],
+    "note": "20 samples per condition. ↓ Lower is better; ↑ higher is better. “–” means not reported. “w/o tac. obs.” removes online sole-pressure observations. The effective hardware background noise floor was approximately 55–60 dB, dominated by the robot’s onboard fan."
+  }
+]

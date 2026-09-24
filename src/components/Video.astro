@@ -1,0 +1,34 @@
+---
+import type { VideoAsset } from '../data/project';
+import { assetUrl } from '../utils/asset';
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  media: VideoAsset;
+  variant?: 'hero' | 'overview' | 'experiment';
+}
+const { media, variant = 'experiment' } = Astro.props;
+const ambient = variant !== 'overview';
+---
+<div class:list={['video-frame', `video-frame--${variant}`, { 'video-frame--portrait': media.portrait }]}>
+  {media.src ? (
+    <>
+      <video
+        id={variant === 'hero' ? 'hero-video' : undefined}
+        aria-label={media.label}
+        poster={media.poster ? assetUrl(media.poster) : undefined}
+        controls
+        muted={ambient}
+        loop={ambient}
+        playsinline
+        preload={variant === 'hero' ? 'auto' : variant === 'overview' ? 'metadata' : 'none'}
+        data-ambient-video={ambient || undefined}
+      >
+        <source src={assetUrl(media.src)} type="video/mp4" />
+        {media.captionsSrc && <track kind="captions" src={assetUrl(media.captionsSrc)} srclang={media.captionsLanguage || 'en'} label={media.captionsLabel || 'English'} default />}
+        Your browser does not support embedded video. <a href={assetUrl(media.src)}>Download the video</a>.
+      </video>
+      {variant === 'hero' && <button class="hero-playback" type="button" aria-controls="hero-video" aria-label="Play hero video" hidden>Play</button>}
+    </>
+  ) : <Placeholder label={media.label} />}
+</div>

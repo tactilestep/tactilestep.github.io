@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+interface Props {
+  label: string;
+  kind?: 'video' | 'image';
+}
+const { label, kind = 'video' } = Astro.props;
+---
+<div class="media-placeholder">
+  <span class="placeholder-icon"><Icon name={kind} /></span>
+  <span class="placeholder-label">{label}</span>
+  <span class="placeholder-note">{kind === 'video' ? 'Video' : 'Figure'} coming soon</span>
+</div>

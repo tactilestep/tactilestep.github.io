@@ -1,0 +1,113 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Video from '../components/Video.astro';
+import Figure from '../components/Figure.astro';
+import Icon from '../components/Icon.astro';
+import Results from '../components/Results.astro';
+import { paper, resources, hero, overview, method, terrainVideos } from '../data/project';
+import { assetUrl } from '../utils/asset';
+const titlePrefix = `${paper.projectName}: `;
+const subtitle = paper.title.startsWith(titlePrefix) ? paper.title.slice(titlePrefix.length) : paper.title;
+const subtitleBreak = paper.titleBreakBefore ? subtitle.indexOf(paper.titleBreakBefore) : -1;
+const subtitleLines = subtitleBreak > 0 ? [subtitle.slice(0, subtitleBreak).trim(), subtitle.slice(subtitleBreak)] : [subtitle];
+const abstractPattern = paper.abstractHighlights.length
+  ? new RegExp(`(${paper.abstractHighlights.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g')
+  : null;
+---
+<Layout title={`${paper.title || paper.projectName} | CoRL 2026`}>
+  <main>
+    <section class="hero" aria-label="TactileStep hero video">
+      <Video media={hero} variant="hero" />
+    </section>
+
+    <header class="paper-header container" id="paper" tabindex="-1">
+      <h1 aria-label={paper.title || paper.projectName}>
+        <span class="project-name">{paper.projectName}</span>
+        {subtitle && <span class="paper-subtitle">{subtitleLines.map((line, index) => <>{index > 0 && <br />}{line}</>)}</span>}
+      </h1>
+      {!paper.title && <p class="paper-title pending">TODO — Full paper title</p>}
+      <p class="conference">{paper.acceptance}</p>
+      <div class="paper-awards" aria-label="Awards" hidden={!paper.awards.length}>
+        {paper.awards.map(award => <p>{award}</p>)}
+      </div>
+      {paper.authors.length ? (
+        <ul class="authors" aria-label="Authors">
+          {paper.authors.map(author => <>
+            <li>
+              {author.url ? <a href={author.url} target="_blank" rel="noopener noreferrer" aria-label={`${author.name} (opens in a new tab)`}>{author.name}</a> : author.name}
+              {author.contribution && <sup>{author.contribution}</sup>}
+              {paper.affiliations.length > 1 && author.affiliationIds.length > 0 && <sup>{author.affiliationIds.join(', ')}</sup>}
+            </li>
+          </>)}
+        </ul>
+      ) : <p class="authors pending">TODO — Authors in paper order</p>}
+      {paper.affiliations.length ? (
+        <ul class="affiliations" aria-label="Affiliations">
+          {paper.affiliations.map(affiliation => <li>{paper.affiliations.length > 1 && <sup>{affiliation.id}</sup>} {affiliation.name}</li>)}
+        </ul>
+      ) : <p class="affiliations pending">TODO — Affiliations</p>}
+      <p class="author-note">{paper.authorNotes.map(note => <span>{note}</span>)}</p>
+      <nav class="resources" aria-label="Paper resources">
+        {resources.map(resource => resource.href ? (
+          <a class="resource" href={assetUrl(resource.href)}><Icon name={resource.icon} />{resource.label}</a>
+        ) : (
+          <button class="resource" type="button" disabled aria-label={`${resource.label} — coming soon`} title={`${resource.label} — coming soon`}><Icon name={resource.icon} />{resource.label}<span class="resource-status">Soon</span></button>
+        ))}
+      </nav>
+    </header>
+
+    <div class="container sections">
+      <section class="section" id="overview" aria-labelledby="overview-heading">
+        <h2 id="overview-heading">Overview</h2>
+        <figure>
+          <Video media={overview} variant="overview" />
+          {overview.caption && <figcaption>{overview.caption}</figcaption>}
+        </figure>
+      </section>
+
+      <section class="section" id="method" aria-labelledby="method-heading">
+        <h2 id="method-heading">Method</h2>
+        <Figure media={method} label="Method figure" />
+      </section>
+
+      <section class="section text-section" id="abstract" aria-labelledby="abstract-heading">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="abstract-copy">
+          {paper.abstract.length ? paper.abstract.map(paragraph => <p>{(abstractPattern ? paragraph.split(abstractPattern) : [paragraph]).map(part => paper.abstractHighlights.includes(part) ? <strong><em>{part}</em></strong> : part)}</p>) : (
+            <p class="text-placeholder"><span class="placeholder-tag">Content forthcoming</span>TODO — The author-supplied paper abstract will appear here.</p>
+          )}
+        </div>
+      </section>
+
+      <section class="section experiments-section" id="experiments" aria-labelledby="experiments-heading">
+        <h2 id="experiments-heading">Locomotion across terrains</h2>
+        <div class="terrain-gallery">
+          {[[1, 2], [0, 3, 4, 5]].map(indices => <div class="terrain-column">
+            {indices.map(index => <section class="terrain-demo" style={`--terrain-order: ${index}`} aria-labelledby={`terrain-${index}-heading`}>
+              <h3 id={`terrain-${index}-heading`}>{terrainVideos[index].label}</h3>
+              <Video media={terrainVideos[index]} />
+            </section>)}
+          </div>)}
+        </div>
+      </section>
+
+      <section class="section" id="results" aria-labelledby="results-heading">
+        <h2 id="results-heading">Key results</h2>
+        <Results />
+      </section>
+
+      <section class="section text-section citation" id="citation" aria-labelledby="citation-heading">
+        <div class="section-heading">
+          <h2 id="citation-heading">BibTeX</h2>
+          {paper.bibtex && <button class="copy-button" type="button" data-copy-bibtex hidden><Icon name="copy" />Copy</button>}
+        </div>
+        {paper.bibtex ? <pre><code id="bibtex">{paper.bibtex}</code></pre> : <p class="text-placeholder">TODO — BibTeX citation will be added with the paper.</p>}
+        <p class="copy-status" role="status" data-copy-status></p>
+      </section>
+    </div>
+  </main>
+  <footer class="footer container">
+    <span>TactileStep <span class="footer-separator" aria-hidden="true">/</span> CoRL 2026</span>
+    <a href="#paper">Back to top ↑</a>
+  </footer>
+</Layout>

@@ -1,0 +1,21 @@
+---
+import type { FigureAsset } from '../data/project';
+import { assetUrl } from '../utils/asset';
+import Placeholder from './Placeholder.astro';
+interface Props {
+  media: FigureAsset;
+  label: string;
+}
+const { media, label } = Astro.props;
+---
+<figure>
+  {media.src ? (
+    <a class="figure-link" href={assetUrl(media.src)} target="_blank" rel="noopener" aria-label={`Open ${label.toLowerCase()} at full resolution in a new tab`}>
+      <img class="research-figure" src={assetUrl(media.src)} alt={media.alt} width={media.width} height={media.height} loading="lazy" decoding="async" />
+    </a>
+  ) : (
+    <div class="figure-placeholder"><Placeholder label={label} kind="image" /></div>
+  )}
+  {media.caption && <figcaption>{media.caption}</figcaption>}
+  {media.src && <p class="figure-tools"><a href={assetUrl(media.src)} target="_blank" rel="noopener" aria-label={`View ${label.toLowerCase()} at full resolution in a new tab`}>Enlarge image ↗</a></p>}
+</figure>
