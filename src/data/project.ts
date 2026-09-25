@@ -1,5 +1,5 @@
 // Edit research content here. Empty values render explicit placeholders.
-// Local asset paths are relative to public/.
+// Local asset paths are relative to public/; the configured base is added automatically.
 export interface VideoAsset {
   portrait?: boolean;
   src: string;
@@ -55,12 +55,20 @@ export const paper: {
     'Humanoid parkour policies can traverse various terrains, but task completion may mask challenges of harsh landings, edge contacts, and unstable stance contacts. Humans naturally regulate foot–terrain interaction through tactile feedback, modulating contact compliance according to terrain stiffness. This highlights a key domain gap between humans and humanoid robots: the absence of rich tactile sensing in most humanoid systems. We address this problem with TactileStep, a deployable tactile learning framework that brings sole pressure sensing into humanoid locomotion control for softer touchdowns and more stable support. TactileStep aligns tactile simulation with the real pressure insole, allowing the policy to learn from the same contact features available on hardware. During training, we use tactile and motion cues to recognize different foot-contact phases and apply phase-aware rewards that encourage safer landing and more stable stance. Evaluated in simulation and on a Unitree G1 humanoid across diverse terrains, TactileStep reduces peak touchdown force by up to 48.8% and peak A-weighted impact noise by up to 30.1 dB over a strong perceptive baseline, while increasing stance contact area by up to 23.8%.',
   ],
   abstractHighlights: ['TactileStep', 'deployable tactile learning framework', 'sole pressure sensing', 'tactile simulation', 'foot-contact phases', 'phase-aware rewards'],
-  bibtex: '', // TODO: author-supplied BibTeX; do not infer publication metadata
+  bibtex: `@misc{wang2026tactilestepsoletactilelearning,
+       title={TactileStep: Sole Tactile Learning for Regulating Foot-Terrain Interaction in Humanoid Locomotion},
+       author={Zizhuo Wang and Ming-ju Lee and Shaoting Zhu and Haozhe Lou and Hang Zhao and Yiming Li},
+       year={2026},
+       eprint={2609.28959},
+       archivePrefix={arXiv},
+       primaryClass={cs.RO},
+       url={https://arxiv.org/abs/2609.28959},
+}`,
 };
 
 export const resources: { label: string; icon: 'paper' | 'arxiv' | 'code' | 'video'; href: string }[] = [
-  { label: 'Paper', icon: 'paper', href: '' },
-  { label: 'arXiv', icon: 'arxiv', href: '' },
+  { label: 'Paper', icon: 'paper', href: 'https://arxiv.org/pdf/2609.28959' },
+  { label: 'arXiv', icon: 'arxiv', href: 'https://arxiv.org/abs/2609.28959' },
   { label: 'Code', icon: 'code', href: '' },
   { label: 'Video', icon: 'video', href: '#overview' },
 ];
